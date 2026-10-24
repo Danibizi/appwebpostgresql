@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Tablas accesibles{% endblock %}
+{% block content %}
+<h1>Tablas accesibles para <span class="accent">{{ user }}</span></h1>
+
+{% if rows %}
+<div class="grid">
+  {% for schema, table in rows %}
+  <a class="card table-card" href="{{ url_for('table_detail', schema=schema, table=table) }}">
+    <div class="schema-tag">{{ schema }}</div>
+    <div class="table-name">{{ table }}</div>
+  </a>
+  {% endfor %}
+</div>
+{% else %}
+<p class="muted">Este usuario no tiene tablas accesibles (o no tiene privilegios sobre ninguna).</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Iniciar sesión{% endblock %}
+{% block content %}
+<div class="card login-card">
+  <h1>Iniciar sesión</h1>
+  <p class="muted">Introduce un usuario y contraseña de PostgreSQL. Se usarán para conectar directamente contra la base de datos.</p>
+  <form method="post">
+    <label>Usuario
+      <input type="text" name="usuario" autocomplete="username" required>
+    </label>
+    <label>Contraseña
+      <input type="password" name="password" autocomplete="current-password" required>
+    </label>
+    <button type="submit">Conectar</button>
+  </form>
+</div>
+{% endblock %}

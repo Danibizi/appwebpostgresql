@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}{{ table }}{% endblock %}
+{% block content %}
+<a class="back" href="{{ url_for('tables') }}">&larr; Volver a tablas</a>
+<h1>{{ schema }}.{{ table }}</h1>
+
+<div class="card search-card">
+  <form method="get" class="search-form">
+    <label>Columna
+      <input type="text" name="columna" value="{{ columna }}" placeholder="p.ej. nombre">
+    </label>
+    <label>Valor
+      <input type="text" name="valor" value="{{ valor }}" placeholder="p.ej. Ana">
+    </label>
+    <label>Modo
+      <select name="modo">
+        <option value="seguro" {% if modo == "seguro" %}selected{% endif %}>Seguro (parametrizado)</option>
+        <option value="vulnerable" {% if modo == "vulnerable" %}selected{% endif %}>Vulnerable (demo SQLi)</option>
+      </select>
+    </label>
+    <button type="submit">Filtrar</button>
+  </form>
+
+  {% if modo == "vulnerable" %}
+  <div class="warning">
+    ⚠️ Modo vulnerable activo: la consulta se construye concatenando el valor directamente.
+    Prueba por ejemplo <code>valor = ' OR '1'='1</code> para ver cómo se filtra la protección.
+  </div>
+  {% endif %}
+</div>
+
+{% if error %}
+<div class="flash error">{{ error }}</div>
+{% endif %}
+
+{% if columnas %}
+<div class="table-scroll">
+<table class="data-table">
+  <thead>
+    <tr>{% for c in columnas %}<th>{{ c }}</th>{% endfor %}</tr>
+  </thead>
+  <tbody>
+    {% for fila in filas %}
+    <tr>{% for valor_celda in fila %}<td>{{ valor_celda }}</td>{% endfor %}</tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+<p class="muted">{{ filas|length }} fila(s) mostradas (máx. 200).</p>
+{% endif %}
+{% endblock %}

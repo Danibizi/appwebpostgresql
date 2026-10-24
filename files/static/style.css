@@ -1,0 +1,177 @@
+:root {
+  --bg: #0f172a;
+  --surface: #1e293b;
+  --surface-2: #273548;
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --accent: #38bdf8;
+  --accent-2: #22d3ee;
+  --danger: #f87171;
+  --success: #4ade80;
+  --warn: #fbbf24;
+  --radius: 10px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: linear-gradient(160deg, var(--bg), #111827);
+  color: var(--text);
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 28px;
+  background: rgba(15, 23, 42, 0.85);
+  border-bottom: 1px solid #334155;
+  backdrop-filter: blur(6px);
+}
+
+.brand { font-weight: 700; font-size: 1.1rem; }
+
+nav { display: flex; align-items: center; gap: 16px; }
+nav a {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+nav a:hover { opacity: 1; color: var(--accent); }
+
+.user-chip {
+  background: var(--surface-2);
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  color: var(--accent-2);
+}
+
+.container { max-width: 980px; margin: 0 auto; padding: 32px 20px 60px; }
+
+h1 { font-size: 1.5rem; margin-bottom: 18px; }
+.accent { color: var(--accent); }
+.muted { color: var(--muted); font-size: 0.9rem; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid #334155;
+  border-radius: var(--radius);
+  padding: 22px;
+}
+
+.login-card { max-width: 380px; margin: 60px auto; }
+.login-card h1 { margin-top: 0; }
+
+form label {
+  display: block;
+  margin-bottom: 14px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+form input, form select {
+  width: 100%;
+  margin-top: 6px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  background: #0f172a;
+  color: var(--text);
+  font-size: 0.95rem;
+}
+form input:focus, form select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+button {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: #04202b;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+button:hover { filter: brightness(1.08); }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 14px;
+}
+.table-card {
+  text-decoration: none;
+  color: var(--text);
+  display: block;
+  transition: transform 0.12s, border-color 0.12s;
+}
+.table-card:hover { transform: translateY(-2px); border-color: var(--accent); }
+.schema-tag {
+  font-size: 0.72rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.table-name { font-size: 1.05rem; font-weight: 600; margin-top: 4px; }
+
+.back {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+.back:hover { color: var(--accent); }
+
+.search-card { margin-bottom: 20px; }
+.search-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr auto;
+  gap: 12px;
+  align-items: end;
+}
+.search-form label { margin-bottom: 0; }
+
+.warning {
+  margin-top: 14px;
+  background: rgba(251, 191, 36, 0.12);
+  border: 1px solid var(--warn);
+  color: var(--warn);
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+}
+.warning code {
+  background: rgba(0,0,0,0.3);
+  padding: 2px 5px;
+  border-radius: 4px;
+}
+
+.flash {
+  padding: 10px 14px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-size: 0.9rem;
+}
+.flash.error { background: rgba(248, 113, 113, 0.12); border: 1px solid var(--danger); color: var(--danger); }
+.flash.success { background: rgba(74, 222, 128, 0.12); border: 1px solid var(--success); color: var(--success); }
+
+.table-scroll { overflow-x: auto; border-radius: var(--radius); border: 1px solid #334155; }
+.data-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+.data-table th, .data-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid #334155;
+  text-align: left;
+  white-space: nowrap;
+}
+.data-table th { background: var(--surface-2); color: var(--accent-2); position: sticky; top: 0; }
+.data-table tr:hover td { background: rgba(56, 189, 248, 0.06); }
+
+@media (max-width: 640px) {
+  .search-form { grid-template-columns: 1fr; }
+}
